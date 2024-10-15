@@ -55,6 +55,7 @@ class House {
   int get totalDoors => doors.length;
 }
 
+// Create 3 differents house from Class House
 void main() {
   Window w1 = Window('green', 'left-stair1');
   Roof r1 = Roof('Triangle');
