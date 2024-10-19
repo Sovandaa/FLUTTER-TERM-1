@@ -5,7 +5,7 @@ class BankAccount {
   double _balance = 0;
 
   BankAccount(this._accountID, this._accountName);
-
+  
   void setbalance(double balance) {
     if (balance >= 0) {
       this._balance = balance;

@@ -21,8 +21,7 @@ class Employee {
   final int _yearOfExperience;
 
   Employee(this._name, this._baseSalary, this._skills , this._address, this._yearOfExperience);
-  
-  // named constructor 
+
   Employee.mobileDeveloper({
     required String name,
     required double baseSalary,

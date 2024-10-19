@@ -34,10 +34,8 @@ class MyDuration {
   // Display the duration in a readable format
   @override
   String toString() {
-    int seconds = (_milliseconds / 1000)
-        .round(); //result in decimal: use round() to round number to nearest interget.
-    int minutes =
-        (seconds / 60).floor(); // get whole minute not include remaind seconds.
+    int seconds = (_milliseconds / 1000).round();  //result in decimal: use round() to round number to nearest interget.
+    int minutes = (seconds / 60).floor(); // get whole minute not include remaind seconds.
     seconds = seconds % 60;
     int hours = (minutes / 60).floor();
     minutes = minutes % 60;
