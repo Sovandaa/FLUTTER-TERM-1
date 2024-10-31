@@ -1,4 +1,3 @@
-
 // import 'package:flutter/material.dart';
 
 // void main() {
@@ -68,7 +67,6 @@
 //       _counter++;
 //     });
 //   }
-
 
 //   @override
 //   Widget build(BuildContext context) {
@@ -151,47 +149,22 @@
 // }
 
 import 'package:flutter/material.dart';
+import 'gradient_widget.dart';
+
 
 void main() {
   runApp(MaterialApp(
     home: Column(
       children: [
-        ButtonWidget("Hello1", Colors.blue, Colors.red), 
-        ButtonWidget("Hello1", Colors.blue, Colors.red), 
-        ButtonWidget("Hello1", Colors.blue, Colors.red)],
+        ButtonWidget("Hello1",32, Colors.blue, Colors.red),
+        ButtonWidget("Hello2",30, Colors.blue, Colors.red),
+        ButtonWidget("Hello3",28, Colors.blue, Colors.red)
+      ],
     ),
   ));
 }
 
-class ButtonWidget extends StatelessWidget {
-  // const ButtonWidget3({
-  //   super.key,
-  // });
-  const ButtonWidget(this.text, this.start, this.end, {super.key});
 
-  final String text;
-  final Color start;
-  final Color end;
-
-
-@override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(40),
-      margin: const EdgeInsets.all(35),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(colors: [start, end]),
-        borderRadius: BorderRadius.circular(10),
-        //color: Colors.blue,
-      ),
-      child: Text(text,
-          style: const TextStyle(
-              color: Colors.white,
-              fontSize: 35,
-              decoration: TextDecoration.none)),
-    );
-  }
-}
 
 // class ButtonWidget2 extends StatelessWidget {
 //   const ButtonWidget2({
