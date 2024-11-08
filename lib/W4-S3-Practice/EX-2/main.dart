@@ -7,7 +7,7 @@ void main() => runApp(MaterialApp(
           backgroundColor: Colors.blue,
           title: const Text("Favorite cards"),
         ),
-        body: Column(
+        body: const Column(
           children: [
             FavoriteCard(),
             FavoriteCard(),

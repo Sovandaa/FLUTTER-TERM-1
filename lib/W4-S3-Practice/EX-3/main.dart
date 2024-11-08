@@ -8,7 +8,7 @@ List<String> images = [
   "assets/W4-S3/man.jpg",
 ];
 
-void main() => runApp(ImageViewer());
+void main() => runApp(const ImageViewer());
 
 class ImageViewer extends StatefulWidget {
   const ImageViewer({
