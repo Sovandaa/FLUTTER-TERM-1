@@ -1,5 +1,5 @@
 // Bonus - Score Bar
-// Didn't done yet just have ui
+// Didn't done yet just have UI, i cannot make increse/ decrease then change color according to it score
 
 import 'package:flutter/material.dart';
 
@@ -10,7 +10,7 @@ void main() {
       body: Center(
         child: Container(
           padding: const EdgeInsets.all(15),
-          child:const Column(
+          child: const Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             // mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -30,7 +30,7 @@ void main() {
 class ScoreCards extends StatelessWidget {
   final String titleSub;
 
-  const ScoreCards({required this.titleSub});
+  const ScoreCards({super.key, required this.titleSub});
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +42,7 @@ class ScoreCards extends StatelessWidget {
         children: [
           Text(
             "My score in $titleSub",
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 24,
               color: Colors.grey,
               fontWeight: FontWeight.bold,
