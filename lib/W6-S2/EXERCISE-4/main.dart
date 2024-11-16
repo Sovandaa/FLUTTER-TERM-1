@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_workspace/W6-S2/EXERCISE-4/jokes.dart';
+import 'package:flutter_workspace/W6-S2/EXERCISE-4/jokes.dart';
 
 Color appColor = Colors.green[300] as Color;
 
@@ -24,6 +24,8 @@ class FavoriteJokes extends StatefulWidget {
 class _FavoriteJokesState extends State<FavoriteJokes> {
   int? favIndex; // keep track current fav joke (null, not selected)
 
+  List<Joke> jokes = Joke(title:"Placeholder",description:"Placeholder").getJokes();
+
   // set/remove fav joke (only one fav joke selected)
   void setFavorite(int index) {
     setState(() {
@@ -41,8 +43,8 @@ class _FavoriteJokesState extends State<FavoriteJokes> {
       children: [
         for (var i = 0; i < 20; i++)
           FavoriteCard(
-            title: "Title ",
-            description: "Descriptions",
+            title: jokes[i].title,
+            description: jokes[i].description,
             isFavorite: favIndex == i, // check fav joke
             onFavoriteClick: () => setFavorite(i), // Update favorite click
           ),

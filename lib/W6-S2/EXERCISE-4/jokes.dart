@@ -1,4 +1,3 @@
-
 // what type of data will store the jokes? List object (class joke)
 // what type of data will store the favorite joke? (int?)
 // which widget should be in charge of storing the favorite joke? main widget (favoriteCard)
@@ -14,9 +13,15 @@ class Joke {
     required this.title,
     required this.description,
   });
+
   // list of 20 jokes
-  List<Joke> jokes = List.generate(
-    20,
-    (index) => Joke(title: "Title", description: "description"),
-  );
+  List<Joke> getJokes() {
+    List<Joke> jokes = [];
+    for (var i = 0; i < 20; i++) {
+      jokes.add(
+        Joke(title: "Title", description: "description"),
+      );
+    }
+    return jokes;
+  }
 }
