@@ -8,7 +8,7 @@ void main() {
   ));
 }
 
-const Color mainColor = Color(0xff5E9FCC);
+const Color mainColor = Color(0xff1d2f43);
 
 class ProfileApp extends StatelessWidget {
   const ProfileApp({super.key});
@@ -16,7 +16,7 @@ class ProfileApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: mainColor.withAlpha(100),
+      backgroundColor: mainColor.withAlpha(200),
       appBar: AppBar(
         backgroundColor: mainColor,
         title: const Text(
