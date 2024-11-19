@@ -11,8 +11,11 @@ ProfileData myProfile = ProfileData(
       TileData(
           icon: Icons.location_on, title: "Address", value: "123 Cambodia"),
       TileData(
-        icon: Icons.email, title: "Mail", value: "sovanda.ban@student.cadt.edu"
-        ),
+          icon: Icons.email, title: "Mail", value: "sovanda.ban@student.cadt.edu.kh"),
       TileData(
-        icon: Icons.school, title: "Major", value: "Computer Science")
+          icon: Icons.person, title: "Full Name", value: "Ban Sovanda"),
+      TileData(
+          icon: Icons.school, title: "Major", value: "Software Engineering"),
+      TileData(
+          icon: Icons.home, title: "HomeTown", value: "Kandal")
     ]);

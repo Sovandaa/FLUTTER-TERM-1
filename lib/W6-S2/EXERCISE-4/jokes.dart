@@ -1,10 +1,3 @@
-// what type of data will store the jokes? List object (class joke)
-// what type of data will store the favorite joke? (int?)
-// which widget should be in charge of storing the favorite joke? main widget (favoriteCard)
-// Which widget should be stateful? (favoriteJoke as stateful)
-// How will your widget interact?
-// Do you need to pass callback function between widgets? (yes, when btn is pressed to select fav joke -> for update state)
-
 class Joke {
   final String title;
   final String description;
@@ -13,15 +6,28 @@ class Joke {
     required this.title,
     required this.description,
   });
+}
 
   // list of 20 jokes
-  List<Joke> getJokes() {
-    List<Joke> jokes = [];
-    for (var i = 0; i < 20; i++) {
-      jokes.add(
-        Joke(title: "Title", description: "description"),
-      );
-    }
-    return jokes;
-  }
-}
+  final List<Joke> jokes = [
+    Joke(title: "Joke 1", description: "description"),
+    Joke(title: "Joke 2", description: "description"),
+    Joke(title: "Joke 3", description: "description"),
+    Joke(title: "Joke 4", description: "description"),
+    Joke(title: "Joke 5", description: "description"),
+    Joke(title: "Joke 6", description: "description"),
+    Joke(title: "Joke 7", description: "description"),
+    Joke(title: "Joke 8", description: "description"),
+    Joke(title: "Joke 9", description: "description"),
+    Joke(title: "Joke 10", description: "description"),
+    Joke(title: "Joke 11", description: "description"),
+    Joke(title: "Joke 12", description: "description"),
+    Joke(title: "Joke 13", description: "description"),
+    Joke(title: "Joke 14", description: "description"),
+    Joke(title: "Joke 15", description: "description"),
+    Joke(title: "Joke 16", description: "description"),
+    Joke(title: "Joke 17", description: "description"),
+    Joke(title: "Joke 18", description: "description"),
+    Joke(title: "Joke 19", description: "description"),
+    Joke(title: "Joke 20", description: "description"),
+  ];

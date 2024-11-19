@@ -24,13 +24,11 @@ class FavoriteJokes extends StatefulWidget {
 class _FavoriteJokesState extends State<FavoriteJokes> {
   int? favIndex; // keep track current fav joke (null, not selected)
 
-  List<Joke> jokes = Joke(title:"Placeholder",description:"Placeholder").getJokes();
-
   // set/remove fav joke (only one fav joke selected)
   void setFavorite(int index) {
     setState(() {
       if (favIndex == index) {
-        favIndex = null;  // null (remove) fav if already selected
+        favIndex = null;  // remove favorite if the same joke is clicked
       } else {
         favIndex = index;
       }
