@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_workspace/W6-S2/EXERCISE-2/data/profile_data.dart';
+import 'package:flutter_workspace/W6-S2/EXERCISE-2/model/profile_tile_model.dart';
 
 void main() {
-  runApp(const MaterialApp(
+  runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: ProfileApp(),
+    home: ProfileApp(myProfile: myProfile),
   ));
 }
 
 const Color mainColor = Color(0xff1d2f43);
 
 class ProfileApp extends StatelessWidget {
-  const ProfileApp({super.key});
+  // const ProfileApp({super.key});
+
+  final ProfileData myProfile;
+
+  const ProfileApp({super.key, required this.myProfile});
 
   @override
   Widget build(BuildContext context) {
@@ -53,14 +58,10 @@ class ProfileApp extends StatelessWidget {
               ),
               const SizedBox(height: 20),
               ...myProfile.tiles.map((tile) => ProfileTile(
-                icon: tile.icon, 
-                title: tile.title, 
-                data: tile.value
-              )),
+                  icon: tile.icon, title: tile.title, data: tile.value)),
             ],
           ),
         ),
-        
       ),
     );
   }

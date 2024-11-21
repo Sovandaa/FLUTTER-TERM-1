@@ -11,9 +11,12 @@ class TemperatureApp extends StatefulWidget {
   }
 }
 
-class _TemperatureAppState extends State<TemperatureApp> {
-  bool isCurrentScreen = true;  //start with welcome screen
+// enum Screens {welcome, temperature}
 
+class _TemperatureAppState extends State<TemperatureApp> {
+  // final Screens currentScreen = Screens.welcome;
+ 
+  bool isCurrentScreen = true;  //start with welcome screen
   void switchScreen() {
     setState(() {
       isCurrentScreen = !isCurrentScreen;
