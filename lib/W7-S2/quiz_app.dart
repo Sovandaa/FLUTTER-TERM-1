@@ -39,11 +39,11 @@ class _QuizAppState extends State<QuizApp> {
           question: widget.quiz.questions[questionIndex]
       );
 
-      // if (submission != null) {
-      //   submission!.answers.add(userAnswer);
-      // } else {
-      //   submission = Submission(answers: [userAnswer]);
-      // }
+      if (submission != null) {
+        submission!.answers.add(userAnswer);
+      } else {
+        submission = Submission(answers: [userAnswer]);
+      }
 
       if (questionIndex < widget.quiz.questions.length - 1) {
         questionIndex++;

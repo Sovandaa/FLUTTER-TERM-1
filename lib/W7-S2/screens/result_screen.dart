@@ -34,7 +34,54 @@ class ResultScreen extends StatelessWidget {
             height: 20,
           ),
           Expanded(
-            child: ListView(),
+            child: ListView.builder(
+                itemCount: quiz.questions.length,
+                itemBuilder: (context, index) {
+                  final question = quiz.questions[index];
+                  final userAnswer = submission.answers[index];
+                  final correctAnswer = question.goodAnswer;
+
+                  return Card(
+                    margin: const EdgeInsets.symmetric(vertical: 8.0),
+                    child: Padding(
+                      padding: const EdgeInsets.all(10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Display the question text
+                          Text(
+                            "Q${index + 1}: ${question.title}",
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(height: 8),
+
+                          // Display the user's answer
+                          Text(
+                            "Your Answer: $userAnswer",
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: userAnswer == correctAnswer
+                                  ? Colors.green
+                                  : Colors.red,
+                            ),
+                          ),
+
+                          // Display the correct answer
+                          Text(
+                            "Correct Answer: $correctAnswer",
+                            style: TextStyle(
+                              fontSize: 16,
+                              color: Colors.blue,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                }),
           ),
           AppButton("Restart Quiz", onTap: onRestart, icon: Icons.restart_alt),
         ]),
