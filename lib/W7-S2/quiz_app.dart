@@ -3,6 +3,8 @@ import 'package:flutter_workspace/W7-S2/screens/welcome_screen.dart';
 import 'model/quiz.dart';
 
 Color appColor = Colors.blue[500] as Color;
+
+enum QuizState {WelcomeScreen, QuestionScreen, ResultScreen}
  
 class QuizApp extends StatefulWidget {
   const QuizApp(this.quiz, {super.key});

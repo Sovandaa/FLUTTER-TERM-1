@@ -27,19 +27,19 @@ class Submission {
   }
 
   Answer? getAnswerFor(Question question) {
-    // if (condition) {
-
-    // }
+    for (var answer in answers) {
+      if (answer.question == question) {
+        return answer;
+      }
+    }
     return null;
   }
 
-  void addAnswer(Question question, String answer){
-
+  void addAnswer(Question question, String answer) {
+    answers.add(Answer(userAnswer: answer, question: question));
   }
 
-  void removeAnswers(){
-    for (var answer in answers) {
-      
-    }
+  void removeAnswers() {
+    answers.clear();
   }
 }
