@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
- 
+
 class QuestionScreen extends StatelessWidget {
-  const QuestionScreen({super.key});
   
+  final VoidCallback onFinish;
+
+  const QuestionScreen({super.key, required this.onFinish});
+
   @override
   Widget build(BuildContext context) {
     return const Text("Question Screen");
   }
 }
- 

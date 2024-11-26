@@ -1,7 +1,7 @@
 import 'package:flutter_workspace/W7-S2/model/quiz.dart';
 
 class Answer {
-  final Question question;
+  final Question question; 
   final String userAnswer;
 
   Answer({required this.userAnswer, required this.question});
@@ -36,6 +36,11 @@ class Submission {
   }
 
   void addAnswer(Question question, String answer) {
+    for (var existAnswer in answers) {
+      if (existAnswer.question == question) {
+        return;
+      }
+    }
     answers.add(Answer(userAnswer: answer, question: question));
   }
 

@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_workspace/W7-S2/widgets/app_button.dart';
 
 class WelcomeScreen extends StatelessWidget {
-  const WelcomeScreen({super.key});
+  
+  final VoidCallback onStart;
 
+  const WelcomeScreen({super.key, required this.onStart});
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,11 +22,14 @@ class WelcomeScreen extends StatelessWidget {
                 // ),
                 Text("Crazy Quiz",
                     style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 26,
-                      fontWeight: FontWeight.bold
-                    )),
-                AppButton("Start Quiz", onTap:(){} , icon: Icons.arrow_forward),
+                        color: Colors.white,
+                        fontSize: 26,
+                        fontWeight: FontWeight.bold)),
+                AppButton(
+                  "Start Quiz",
+                  onTap: onStart, 
+                  icon: Icons.arrow_forward
+                ),
               ],
             ),
           ),
