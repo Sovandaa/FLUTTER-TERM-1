@@ -18,22 +18,23 @@ class QuizApp extends StatefulWidget {
 }
 
 class _QuizAppState extends State<QuizApp> {
-  QuizState state = QuizState.notStarted; // onstarted, currentstarte = welcomeScreen
+  QuizState state =
+      QuizState.notStarted; // onstarted, currentstarte = welcomeScreen
 
-  void switchQuizState(QuizState newState) {
+  void switchScreen(QuizState newState) {
     setState(() {
       state = newState;
     });
   }
 
-  Widget _getScreen() {
+  Widget getScreen() {
     switch (state) {
       case QuizState.notStarted:
-        return WelcomeScreen(onStart:() => switchQuizState(QuizState.started));
+        return WelcomeScreen(onStart: () => switchScreen(QuizState.started));
       case QuizState.started:
-        return QuestionScreen(onFinish:() => switchQuizState(QuizState.finished));
+        return QuestionScreen(onFinish: () => switchScreen(QuizState.finished));
       case QuizState.finished:
-        return ResultScreen(onRestart:() => switchQuizState(QuizState.notStarted));      
+        return ResultScreen(onRestart: () => switchScreen(QuizState.notStarted));
     }
   }
 
@@ -43,15 +44,8 @@ class _QuizAppState extends State<QuizApp> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: appColor,
-        // body: const Center(
-        //   child: Column(
-        //     mainAxisAlignment: MainAxisAlignment.center,
-        //     children: [
-        //       Text('TODO !'),
-        //     ],
-        //   ),
-        // ),
-        body: _getScreen(),
+        
+        body: getScreen(),
       ),
     );
   }
