@@ -13,27 +13,25 @@ class WelcomeScreen extends StatelessWidget {
     return Scaffold(
         backgroundColor: Colors.blue,
         body: Center(
-          child: Container(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  "assets/W7-S2/quiz-logo.png", 
-                  height: 250,
-                  width: 250,
-                ),
-                SizedBox(height: 10),
-                Text(quizTitle,
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 26,
-                        fontWeight: FontWeight.bold)),
-                SizedBox(height: 50),
-                AppButton("Start Quiz",
-                    onTap: onStart,
-                    icon: Icons.arrow_forward),
-              ],
-            ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                "assets/W7-S2/quiz-logo.png", 
+                height: 250,
+                width: 250,
+              ),
+              SizedBox(height: 10),
+              Text(quizTitle,
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 26,
+                      fontWeight: FontWeight.bold)),
+              SizedBox(height: 50),
+              AppButton("Start Quiz",
+                  onTap: onStart,
+                  icon: Icons.arrow_forward),
+            ],
           ),
         ));
   }

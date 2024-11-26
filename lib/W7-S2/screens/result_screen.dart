@@ -76,7 +76,6 @@ class ResultScreen extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              // Question Title
                               Text(
                                 quiz.questions[i].title,
                                 style: const TextStyle(
@@ -86,9 +85,8 @@ class ResultScreen extends StatelessWidget {
                               ),
                               const SizedBox(height: 8),
                               
-                              // Optional: Display all possible answers
-                              for (var answer
-                                  in quiz.questions[i].possibleAnswers) ...[
+                              // Display all possible answers
+                              for (var answer in quiz.questions[i].possibleAnswers) ...[
                                 Text(
                                   "${submission.answers[i].userAnswer == answer ? "✓ " : ""}$answer",
                                   style: TextStyle(
