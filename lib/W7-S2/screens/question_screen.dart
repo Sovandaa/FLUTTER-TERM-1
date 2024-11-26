@@ -6,9 +6,9 @@ class QuestionScreen extends StatelessWidget {
   final Question question;
 
   const QuestionScreen({
-    super.key, 
-    required this.onTap, 
-    required this.question, 
+    super.key,
+    required this.onTap,
+    required this.question,
   });
 
   @override
@@ -30,25 +30,25 @@ class QuestionScreen extends StatelessWidget {
               ),
               SizedBox(height: 30),
               ...question.possibleAnswers.map((answer) {
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 15.0),  
-                    child: SizedBox(
-                      width: 400,
-                      height: 40,
-                      child: ElevatedButton(
-                        onPressed: onTap, 
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.lightBlue[300],
-                        ),
-                        child: Text(
-                          answer,
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 15.0),
+                  child: SizedBox(
+                    width: 400,
+                    height: 40,
+                    child: ElevatedButton(
+                      onPressed: onTap,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.lightBlue[300],
+                      ),
+                      child: Text(
+                        answer,
+                        style: TextStyle(
+                          color: Colors.white,
                         ),
                       ),
                     ),
-                  );
+                  ),
+                );
               }).toList(),
             ],
           ),

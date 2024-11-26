@@ -53,6 +53,14 @@ class _QuizAppState extends State<QuizApp> {
     });
   }
 
+  void restartQuiz() {
+    setState(() {
+      state = QuizState.notStarted; 
+      questionIndex = 0; 
+      submission = Submission(answers: []); 
+    });
+  }
+
   Widget getScreen() {
     switch (state) {
       case QuizState.notStarted:
@@ -67,7 +75,7 @@ class _QuizAppState extends State<QuizApp> {
         );
       case QuizState.finished:
         return ResultScreen(
-            onRestart: () => switchScreen(QuizState.notStarted), 
+            onRestart: restartQuiz, 
             submission: submission!, 
             quiz: widget.quiz,
           );
