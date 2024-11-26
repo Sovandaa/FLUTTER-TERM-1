@@ -1,4 +1,6 @@
+
 import 'package:flutter/material.dart';
+import 'package:flutter_workspace/W7-S2/model/submission.dart';
 import 'package:flutter_workspace/W7-S2/screens/question_screen.dart';
 import 'package:flutter_workspace/W7-S2/screens/result_screen.dart';
 import 'package:flutter_workspace/W7-S2/screens/welcome_screen.dart';
@@ -18,8 +20,11 @@ class QuizApp extends StatefulWidget {
 }
 
 class _QuizAppState extends State<QuizApp> {
-  QuizState state =
-      QuizState.notStarted; // onstarted, currentstarte = welcomeScreen
+  QuizState state = QuizState.notStarted; // onstarted, currentstarte = welcomeScreen
+  int questionIndex = 0;
+  Submission? submission;
+
+  String selectedAnswer = '';
 
   void switchScreen(QuizState newState) {
     setState(() {
@@ -27,14 +32,45 @@ class _QuizAppState extends State<QuizApp> {
     });
   }
 
+  void nextQuestion() {
+    setState(() {
+      Answer userAnswer = Answer(
+          userAnswer: selectedAnswer, 
+          question: widget.quiz.questions[questionIndex]
+      );
+
+      // if (submission != null) {
+      //   submission!.answers.add(userAnswer);
+      // } else {
+      //   submission = Submission(answers: [userAnswer]);
+      // }
+
+      if (questionIndex < widget.quiz.questions.length - 1) {
+        questionIndex++;
+      } else {
+        switchScreen(QuizState.finished);
+      }
+    });
+  }
+
   Widget getScreen() {
     switch (state) {
       case QuizState.notStarted:
-        return WelcomeScreen(onStart: () => switchScreen(QuizState.started));
+        return WelcomeScreen(
+          onStart: () => switchScreen(QuizState.started),
+          quizTitle: widget.quiz.title,
+        );
       case QuizState.started:
-        return QuestionScreen(onFinish: () => switchScreen(QuizState.finished));
+        return QuestionScreen(
+          onTap: nextQuestion,
+          question: widget.quiz.questions[questionIndex],
+        );
       case QuizState.finished:
-        return ResultScreen(onRestart: () => switchScreen(QuizState.notStarted));
+        return ResultScreen(
+            onRestart: () => switchScreen(QuizState.notStarted), 
+            submission: submission!, 
+            quiz: widget.quiz,
+          );
     }
   }
 
@@ -44,7 +80,6 @@ class _QuizAppState extends State<QuizApp> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: appColor,
-        
         body: getScreen(),
       ),
     );
