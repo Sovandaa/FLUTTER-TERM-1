@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_workspace/W7-S2/model/submission.dart';
 import 'package:flutter_workspace/W7-S2/screens/question_screen.dart';
@@ -20,10 +19,10 @@ class QuizApp extends StatefulWidget {
 }
 
 class _QuizAppState extends State<QuizApp> {
-  QuizState state = QuizState.notStarted; // onstarted, currentstarte = welcomeScreen
+  QuizState state =
+      QuizState.notStarted; // onstarted, currentstarte = welcomeScreen
   int questionIndex = 0;
-  Submission? submission;
-
+  Submission submission = Submission(answers: []);
   String selectedAnswer = '';
 
   void switchScreen(QuizState newState) {
@@ -32,19 +31,28 @@ class _QuizAppState extends State<QuizApp> {
     });
   }
 
-  void nextQuestion() {
+  // void nextQuestion(String userAnswer) {
+  //   setState(() {
+  //     selectedAnswer = userAnswer;
+  //   });
+
+  //   submission.addAnswer(widget.quiz.questions[questionIndex], selectedAnswer);
+
+  //   setState(() {
+  //     if (questionIndex < widget.quiz.questions.length - 1) {
+  //       questionIndex++;
+  //       selectedAnswer = ''; // reset for next question
+  //     } else {
+  //       switchScreen(QuizState.finished);
+  //     }
+  //   });
+  // }
+
+  void handleAnswer(String userAnswer) {
+
+    submission.addAnswer(widget.quiz.questions[questionIndex], userAnswer);
+
     setState(() {
-      Answer userAnswer = Answer(
-          userAnswer: selectedAnswer, 
-          question: widget.quiz.questions[questionIndex]
-      );
-
-      if (submission != null) {
-        submission!.answers.add(userAnswer);
-      } else {
-        submission = Submission(answers: [userAnswer]);
-      }
-
       if (questionIndex < widget.quiz.questions.length - 1) {
         questionIndex++;
       } else {
@@ -55,9 +63,9 @@ class _QuizAppState extends State<QuizApp> {
 
   void restartQuiz() {
     setState(() {
-      state = QuizState.notStarted; 
-      questionIndex = 0; 
-      submission = Submission(answers: []); 
+      state = QuizState.notStarted;
+      questionIndex = 0;
+      submission.removeAnswers();
     });
   }
 
@@ -70,15 +78,15 @@ class _QuizAppState extends State<QuizApp> {
         );
       case QuizState.started:
         return QuestionScreen(
-          onTap: nextQuestion,
+          onTap: handleAnswer,
           question: widget.quiz.questions[questionIndex],
         );
       case QuizState.finished:
         return ResultScreen(
-            onRestart: restartQuiz, 
-            submission: submission!, 
-            quiz: widget.quiz,
-          );
+          onRestart: restartQuiz,
+          submission: submission,
+          quiz: widget.quiz,
+        );
     }
   }
 

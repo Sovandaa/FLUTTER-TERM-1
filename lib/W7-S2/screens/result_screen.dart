@@ -88,7 +88,7 @@ class ResultScreen extends StatelessWidget {
                               // Display all possible answers
                               for (var answer in quiz.questions[i].possibleAnswers) ...[
                                 Text(
-                                  "${submission.answers[i].userAnswer == answer ? "✓ " : ""}$answer",
+                                  "${submission.answers[i].userAnswer == answer ? "✓ " : "X"}$answer",
                                   style: TextStyle(
                                     color: submission.answers[i].userAnswer ==
                                             answer

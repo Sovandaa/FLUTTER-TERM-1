@@ -3,7 +3,7 @@ import 'package:flutter_workspace/W7-S2/model/quiz.dart';
 import 'package:flutter_workspace/W7-S2/quiz_app.dart';
 
 class QuestionScreen extends StatelessWidget {
-  final VoidCallback onTap;
+  final Function(String) onTap;
   final Question question;
 
   const QuestionScreen({
@@ -36,10 +36,7 @@ class QuestionScreen extends StatelessWidget {
                   width: 400,
                   height: 40,
                   child: ElevatedButton(
-                    onPressed: () {
-                      
-                      onTap();
-                    },
+                    onPressed: () => onTap(answer),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.lightBlue[300],
                     ),
