@@ -31,23 +31,6 @@ class _QuizAppState extends State<QuizApp> {
     });
   }
 
-  // void nextQuestion(String userAnswer) {
-  //   setState(() {
-  //     selectedAnswer = userAnswer;
-  //   });
-
-  //   submission.addAnswer(widget.quiz.questions[questionIndex], selectedAnswer);
-
-  //   setState(() {
-  //     if (questionIndex < widget.quiz.questions.length - 1) {
-  //       questionIndex++;
-  //       selectedAnswer = ''; // reset for next question
-  //     } else {
-  //       switchScreen(QuizState.finished);
-  //     }
-  //   });
-  // }
-
   void handleAnswer(String userAnswer) {
 
     submission.addAnswer(widget.quiz.questions[questionIndex], userAnswer);
