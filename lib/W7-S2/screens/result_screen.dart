@@ -92,8 +92,10 @@ class ResultScreen extends StatelessWidget {
                                 submission.answers[i].userAnswer == answer
                                     ? (submission.answers[i].userAnswer == question.goodAnswer
                                         ? "✓ $answer" 
-                                        : "$answer") 
-                                    : answer, // no mark for other answer
+                                        : answer) 
+                                    : (answer == question.goodAnswer
+                                        ? "✓ $answer"
+                                        : answer),
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: submission.answers[i].userAnswer == answer
