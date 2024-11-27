@@ -1,6 +1,6 @@
 import 'package:uuid/uuid.dart';
 
-enum ExpenseType { Food, Travel, Liesure, Work }
+enum ExpenseType { Food, Travel, Leisure, Work }
 
 const Uuid uuid = Uuid();
 

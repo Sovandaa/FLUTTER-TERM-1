@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_workspace/W8-S1/models/expense.dart';
+import 'package:flutter_workspace/W8-S1/screens/expenses_list.dart';
 
 class Expenses extends StatefulWidget {
   const Expenses({super.key});
@@ -19,17 +20,14 @@ class _ExpensesState extends State<Expenses> {
     ),
 
     Expense(
-    title: "Flutter Course",
+    title: "Cinema",
     amount: 15.99,
     date: DateTime.now(),
-    category: ExpenseType.Work
+    category: ExpenseType.Leisure
     ),
 
   ];
-
   
-  
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +35,6 @@ class _ExpensesState extends State<Expenses> {
       appBar: AppBar(
         backgroundColor: Colors.blueAccent,
         title: Text("Ronan-The-Best Expenses App"),
-
         actions: [
           TextButton(
             onPressed: (){}, 
@@ -48,41 +45,13 @@ class _ExpensesState extends State<Expenses> {
           ),
         ],
       ),
-      
+
+      body: Padding(
+        padding: const EdgeInsets.all(10),
+        child: ExpensesList(expenses: _registeredExpenses),
+        ),      
     );
   }
 }
 
-class ExpensesList extends StatelessWidget {
-  const ExpensesList({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return ListView(
-      children: [
-
-      ],
-    );
-  }
-}
-
-class ExpenseItem extends StatelessWidget {
-  const ExpenseItem({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      child: Row(
-        children: [
-          Column(
-            children: [
-              Text("Flutter Course"),
-              Text("\$19.99")
-            ],
-          ),
-          Icon(Icons.school)
-        ],
-      ),
-    );
-  }
-}
