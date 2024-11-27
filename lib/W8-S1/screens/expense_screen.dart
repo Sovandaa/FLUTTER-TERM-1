@@ -25,7 +25,6 @@ class _ExpensesState extends State<Expenses> {
     category: ExpenseType.Work
     ),
 
-
   ];
 
   
