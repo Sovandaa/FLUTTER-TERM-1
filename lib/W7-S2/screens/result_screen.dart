@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import '../model/quiz.dart';
 import '../model/submission.dart';
@@ -49,6 +48,7 @@ class ResultScreen extends StatelessWidget {
                 final userAnswer = submission.answers[i].userAnswer;
 
                 return Container(
+                  color: Colors.white,
                   margin: const EdgeInsets.only(bottom: 12),
                   padding: const EdgeInsets.all(12),
                   child: Row(
@@ -86,23 +86,26 @@ class ResultScreen extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(height: 8),
-                            
+
                             for (var answer in question.possibleAnswers) ...[
                               Text(
                                 submission.answers[i].userAnswer == answer
-                                    ? (submission.answers[i].userAnswer == question.goodAnswer
-                                        ? "✓ $answer" 
-                                        : answer) 
+                                    ? (submission.answers[i].userAnswer ==
+                                            question.goodAnswer
+                                        ? "✓ $answer"
+                                        : answer)
                                     : (answer == question.goodAnswer
                                         ? "✓ $answer"
                                         : answer),
                                 style: TextStyle(
                                   fontSize: 16,
-                                  color: submission.answers[i].userAnswer == answer
-                                      ? (submission.answers[i].userAnswer == question.goodAnswer
-                                          ? Colors.green
-                                          : Colors.red)
-                                      : Colors.black,
+                                  color:
+                                      submission.answers[i].userAnswer == answer
+                                          ? (submission.answers[i].userAnswer ==
+                                                  question.goodAnswer
+                                              ? Colors.green
+                                              : Colors.red)
+                                          : Colors.black,
                                 ),
                               ),
                             ],

@@ -34,15 +34,21 @@ class _ExpensesState extends State<Expenses> {
       backgroundColor: Colors.lightBlue[100],
       appBar: AppBar(
         backgroundColor: Colors.blueAccent,
-        title: Text("Ronan-The-Best Expenses App"),
+        title: Text("The-Best Expenses App"),
         actions: [
-          TextButton(
+
+          IconButton(
             onPressed: (){}, 
-            child: Icon(
-              Icons.add,
-              color: Colors.black,
+            icon: Icon(Icons.add),
+            color: Colors.black,
             )
-          ),
+          // TextButton(
+          //   onPressed: (){}, 
+          //   child: Icon(
+          //     Icons.add,
+          //     color: Colors.black,
+          //   )
+          // ),
         ],
       ),
 
