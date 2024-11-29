@@ -44,12 +44,27 @@ class _ExpenseFormState extends State<ExpenseForm> {
               prefix: Text('\$ '),
             ),
           ),
-          ElevatedButton(
+
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              ElevatedButton(onPressed: () =>{
+                Navigator.pop(context),
+              }, 
+              child: const Text("Cancel")),
+              SizedBox(width: 10),
+
+              ElevatedButton(
               onPressed: () => {
                     print("Title: ${_titleController.text}"),
                     print("Amount: ${_amountController.text}"),
                   },
-              child: const Text('Check value'))
+              child: const Text('Check value')),
+              
+            ],
+          )
+
+          
         ],
       ),
     );
