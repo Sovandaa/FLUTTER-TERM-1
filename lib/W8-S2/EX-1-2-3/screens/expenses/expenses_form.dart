@@ -153,7 +153,13 @@ class _ExpenseFormState extends State<ExpenseForm> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.purple[50],
                 ),
-                child: const Text('Save Expense', style: TextStyle(color: Colors.grey),),
+                child: const Text(
+                  'Save Expense', 
+                  style: TextStyle(
+                    color: Colors.blueGrey,
+                    fontWeight: FontWeight.w500,
+                    ),
+                  ),
               ),
             ],
           )
