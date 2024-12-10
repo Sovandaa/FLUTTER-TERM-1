@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_workspace/W9-S2/Grocery/models/grocery_item.dart';
+import 'package:flutter_workspace/W9-S2/Grocery/models/mode.dart';
 import 'package:flutter_workspace/W9-S2/Grocery/widgets/new_item.dart';
 import '../data/dummy_items.dart';
 
@@ -30,28 +31,46 @@ class _GroceryListState extends State<GroceryList> {
     }
   }
 
+  // update order of item
+  void updateOrder(int oldIndex, int newIndex) {
+    setState(() {
+      if (newIndex > oldIndex) {
+        newIndex -= 1; // Adjust newIndex when moving down
+      }
+      final item = groceryItems.removeAt(oldIndex);
+      groceryItems.insert(newIndex, item);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget content = const Center(child: Text('No items added yet.'));
 
     if (dummyGroceryItems.isNotEmpty) {
-      content = ListView.builder(
-        itemCount: dummyGroceryItems.length,
-        itemBuilder: (ctx, index) => GroceryTile(dummyGroceryItems[index]),
-      );
+      content = ReorderableListView(
+        onReorder: updateOrder,
+        children: [
+          for (var item in dummyGroceryItems)
+            GroceryTile(
+              item, 
+              key: ValueKey(item.id),
+              )
+        ]);
+      // handle long press
+
     }
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Your Groceries'),
+        title: Text('Your Groceries'),
         actions: [
-          IconButton(
-            onPressed: () => {
-              addNewItem(),
-            },
-            icon: const Icon(Icons.add),
-          ),
-        ],
+                IconButton(
+                  onPressed: () => {
+                    addNewItem(),
+                  },
+                  icon: const Icon(Icons.add),
+                ),
+              ],
       ),
       body: content,
     );
@@ -72,8 +91,11 @@ class GroceryTile extends StatelessWidget {
         height: 24,
         color: groceryItem.category.color,
       ),
-      trailing: Text(
-        groceryItem.quantity.toString(),
+      trailing: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 18.0),
+        child: Text(
+          groceryItem.quantity.toString(),
+        ),
       ),
     );
   }

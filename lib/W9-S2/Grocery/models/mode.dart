@@ -1,4 +1,6 @@
 enum Mode {
+  creating,
   editing,
-  creating
+  normal,
+  selection
 }
