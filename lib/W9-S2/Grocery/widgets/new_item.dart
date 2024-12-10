@@ -4,6 +4,10 @@ import 'package:flutter_workspace/W9-S2/Grocery/models/grocery_item.dart';
 import '../models/grocery_category.dart';
 
 class NewItem extends StatefulWidget {
+  // const NewItem({super.key, required this.mode, this.item});
+
+  // final Mode mode;
+  // final GroceryItem? item;
   const NewItem({super.key});
 
   @override
@@ -48,6 +52,9 @@ class _NewItemState extends State<NewItem> {
   void _resetForm() {
     // TODO: reset the form
     _formKey.currentState!.reset();
+    _enteredName = '';
+    _enteredQuantity = 1;
+    _category = GroceryCategory.fruit;
   }
 
   String? validateTitle(String? value) {
@@ -111,6 +118,7 @@ class _NewItemState extends State<NewItem> {
                   const SizedBox(width: 8),
                   Expanded(
                     child: DropdownButtonFormField<GroceryCategory>(
+                      value: _category,
                       items: [
                         for (final category in GroceryCategory.values)
                           DropdownMenuItem<GroceryCategory>(
