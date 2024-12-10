@@ -14,13 +14,14 @@ class GroceryList extends StatefulWidget {
 class _GroceryListState extends State<GroceryList> {
   List<GroceryItem> groceryItems = dummyGroceryItems;
   // pass data, add new item to grocery list
-  Future<void> passedData() async {
+  Future<void> addNewItem() async {
+    // navigate to Newitem screen & wait for data of new item
     final newItem = await Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const NewItem()),
     );
 
-    // get return data from add item screen
+    // get newItem data returned from NewItem screen, add to list
     if (newItem != null) {
       setState(() {
         groceryItems.add(newItem);
@@ -45,7 +46,7 @@ class _GroceryListState extends State<GroceryList> {
         actions: [
           IconButton(
             onPressed: () => {
-              passedData(),
+              addNewItem(),
             },
             icon: const Icon(Icons.add),
           ),
