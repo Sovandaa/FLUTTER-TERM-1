@@ -13,6 +13,7 @@ class GroceryList extends StatefulWidget {
 
 class _GroceryListState extends State<GroceryList> {
   List<GroceryItem> groceryItems = dummyGroceryItems;
+
   // pass data, add new item to grocery list
   Future<void> addNewItem() async {
     // navigate to Newitem screen & wait for data of new item
