@@ -34,8 +34,9 @@ class _GroceryListState extends State<GroceryList> {
   // update order of item
   void updateOrder(int oldIndex, int newIndex) {
     setState(() {
+      // adjust newIndex when moving down
       if (newIndex > oldIndex) {
-        newIndex -= 1; // Adjust newIndex when moving down
+        newIndex -= 1;
       }
       final item = groceryItems.removeAt(oldIndex);
       groceryItems.insert(newIndex, item);
@@ -47,30 +48,27 @@ class _GroceryListState extends State<GroceryList> {
     Widget content = const Center(child: Text('No items added yet.'));
 
     if (dummyGroceryItems.isNotEmpty) {
-      content = ReorderableListView(
-        onReorder: updateOrder,
-        children: [
-          for (var item in dummyGroceryItems)
-            GroceryTile(
-              item, 
-              key: ValueKey(item.id),
-              )
-        ]);
+      content = ReorderableListView(onReorder: updateOrder, children: [
+        for (var item in dummyGroceryItems)
+          GroceryTile(
+            item,
+            key: ValueKey(item.id),
+          )
+      ]);
       // handle long press
-
     }
 
     return Scaffold(
       appBar: AppBar(
         title: Text('Your Groceries'),
         actions: [
-                IconButton(
-                  onPressed: () => {
-                    addNewItem(),
-                  },
-                  icon: const Icon(Icons.add),
-                ),
-              ],
+          IconButton(
+            onPressed: () => {
+              addNewItem(),
+            },
+            icon: const Icon(Icons.add),
+          ),
+        ],
       ),
       body: content,
     );
