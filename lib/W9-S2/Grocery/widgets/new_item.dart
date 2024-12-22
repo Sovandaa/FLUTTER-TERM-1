@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-// import 'package:flutter_workspace/W9-S2/Grocery/models/mode.dart';
+import 'package:flutter_workspace/W9-S2/Grocery/models/mode.dart';
 import 'package:uuid/uuid.dart';
 import 'package:flutter_workspace/W9-S2/Grocery/models/grocery_item.dart';
 import '../models/grocery_category.dart';
 
 class NewItem extends StatefulWidget {
-  // const NewItem({super.key, required this.mode, this.item});
-  // final Mode mode;
-  // final GroceryItem? item;
-  const NewItem({super.key});
+  final Mode mode;
+  final GroceryItem? itemToEdit;
+  const NewItem({super.key, required this.mode, this.itemToEdit});
+  // const NewItem({super.key});
 
   @override
   State<NewItem> createState() {
@@ -19,7 +19,7 @@ class NewItem extends StatefulWidget {
 class _NewItemState extends State<NewItem> {
   // We create a key to access and control the state of the Form.
   final _formKey = GlobalKey<FormState>();
-  final Uuid uuid = Uuid(); // instant Uuid
+  Uuid uuid = const Uuid(); // instant Uuid, unquie id
 
   String _enteredName = '';
   int _enteredQuantity = 0;
@@ -32,10 +32,11 @@ class _NewItemState extends State<NewItem> {
       // 2 - Save the form to get last entered values
       _formKey.currentState!.save();
 
-      // TODO: Get the last entered quantity
       print("Name $_enteredName");
       print("Quantity $_enteredQuantity");
       print("Category ${_category.label}");
+
+      // check id use existing for edit item & new id for create  
 
       // add new item of groceryitem
       GroceryItem item = GroceryItem(
@@ -45,16 +46,24 @@ class _NewItemState extends State<NewItem> {
           category: _category);
 
       // pop the current screen, return data of new item
-      Navigator.pop(context, item);
+      Navigator.pop<GroceryItem>(context, item);
     }
   }
 
   void _resetForm() {
     // TODO: reset the form
     _formKey.currentState!.reset();
-    _enteredName = '';
-    _enteredQuantity = 1;
-    _category = GroceryCategory.fruit;
+    setState(() {
+      if (widget.mode == Mode.creating) {
+        _enteredName = '';
+        _enteredQuantity = 1;
+        _category = GroceryCategory.fruit;
+      } else {
+        _enteredName = widget.itemToEdit!.name;
+        _enteredQuantity = widget.itemToEdit!.quantity;
+        _category = widget.itemToEdit!.category;
+      }
+    });
   }
 
   String? validateTitle(String? value) {
@@ -79,10 +88,21 @@ class _NewItemState extends State<NewItem> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    if (widget.mode == Mode.editing) {
+      _enteredName = widget.itemToEdit!.name;
+      _enteredQuantity = widget.itemToEdit!.quantity;
+      _category = widget.itemToEdit!.category;
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add a new item'),
+        title:
+            widget.mode == Mode.creating ? Text('Add New Item') : Text("Edit Item"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(12),
@@ -92,6 +112,7 @@ class _NewItemState extends State<NewItem> {
             children: [
               TextFormField(
                 maxLength: 50,
+                initialValue: widget.mode == Mode.editing ? _enteredName : "",
                 decoration: const InputDecoration(
                   label: Text('Name'),
                 ),
@@ -109,7 +130,9 @@ class _NewItemState extends State<NewItem> {
                         decoration: const InputDecoration(
                           label: Text('Quantity'),
                         ),
-                        initialValue: '1',
+                        initialValue: widget.mode == Mode.editing
+                            ? _enteredQuantity.toString()
+                            : "1",
                         validator: validateQuantity,
                         onSaved: (value) {
                           _enteredQuantity = int.parse(value!);
@@ -157,7 +180,9 @@ class _NewItemState extends State<NewItem> {
                   ),
                   ElevatedButton(
                     onPressed: _saveItem,
-                    child: const Text('Add Item'),
+                    child: widget.mode == Mode.creating
+                        ? Text('Add Item')
+                        : Text("Save Edit"),
                   )
                 ],
               ),

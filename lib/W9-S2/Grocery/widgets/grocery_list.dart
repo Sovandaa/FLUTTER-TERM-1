@@ -14,14 +14,19 @@ class GroceryList extends StatefulWidget {
 
 class _GroceryListState extends State<GroceryList> {
   List<GroceryItem> groceryItems = dummyGroceryItems;
+  Mode typeMode = Mode.normal;
+  List<String> selectedItem = [];
 
   // pass data, add new item to grocery list
   Future<void> addNewItem() async {
     // navigate to Newitem screen & wait for data of new item
     final newItem = await Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const NewItem()),
-    );
+        context,
+        MaterialPageRoute(
+          builder: (context) => const NewItem(
+            mode: Mode.creating,
+          ),
+        ));
 
     // get newItem data returned from NewItem screen, add to list
     if (newItem != null) {
@@ -30,6 +35,30 @@ class _GroceryListState extends State<GroceryList> {
       });
     }
   }
+
+  // Edit item
+  void editItem(GroceryItem item) async {
+    final updateItem = await Navigator.of(context).push(MaterialPageRoute(
+        builder: (context) => NewItem(
+              mode: Mode.editing,
+              itemToEdit: item,
+            )));
+
+    if (updateItem != null) {
+      int index = groceryItems.indexOf(item);
+      setState(() {
+        // dummyGroceryItems[index] = updateItem;
+        groceryItems[index] = updateItem;
+      });
+    }
+  }
+
+  // void removeItem(GroceryItem item) async {
+  //   final itemRemoved = await Navigator.of(context).push(
+  //     MaterialPageRoute(
+  //       // builder: (context) => )
+  //   );
+  // }
 
   // update order of item
   void updateOrder(int oldIndex, int newIndex) {
@@ -47,29 +76,53 @@ class _GroceryListState extends State<GroceryList> {
   Widget build(BuildContext context) {
     Widget content = const Center(child: Text('No items added yet.'));
 
-    if (dummyGroceryItems.isNotEmpty) {
-      content = ReorderableListView(onReorder: updateOrder, children: [
-        for (var item in dummyGroceryItems)
-          GroceryTile(
-            item,
-            key: ValueKey(item.id),
-          )
-      ]);
-      // handle long press
+    if (groceryItems.isNotEmpty) {
+      content = ListView.builder(
+          itemCount: groceryItems.length,
+          itemBuilder: (ctx, index) {
+            return GestureDetector(
+              child: GroceryTile(groceryItems[index]),
+              onTap: () => editItem(groceryItems[index]),
+              onLongPress: () => {},
+            );
+          });
     }
+
+    // if (dummyGroceryItems.isNotEmpty) {
+    //   content = ReorderableListView(
+    //     onReorder: updateOrder,
+    //     children: [
+    //         for (var index = 0; index <dummyGroceryItems.length; index++)
+    //         GestureDetector(
+    //           onTap: () => editItem(dummyGroceryItems[index],index),
+    //           key: ValueKey(dummyGroceryItems[index].id),
+    //       child: GroceryTile(dummyGroceryItems[index]),
+    //     ),
+    //   ]);
+    //   // handle long press
+    // }
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Your Groceries'),
-        actions: [
-          IconButton(
-            onPressed: () => {
-              addNewItem(),
-            },
-            icon: const Icon(Icons.add),
-          ),
-        ],
-      ),
+          title: Text(typeMode == Mode.selection
+              ? "${selectedItem.length} Selected Item(s)"
+              : 'Your Groceries'),
+          // title: typeMode == Mode.selection
+          //   ? Text("${selectedItem.length} Selected Item(s)")
+          //   : Text('Your Groceries'),
+          actions: typeMode == Mode.selection
+              ? [
+                  IconButton(
+                      onPressed: () => {}, icon: const Icon(Icons.delete)),
+                ]
+              : [
+                  IconButton(
+                    onPressed: () => {
+                      addNewItem(),
+                    },
+                    icon: const Icon(Icons.add),
+                  ),
+                ]),
       body: content,
     );
   }

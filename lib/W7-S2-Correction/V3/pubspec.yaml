@@ -1,0 +1,9 @@
+name: my_quiz
+
+environment:
+  sdk: '^3.5.0'
+
+dependencies:
+  json_annotation: ^4.4.0
+  json: ^0.20.2
+  uuid: ^4.5.1
